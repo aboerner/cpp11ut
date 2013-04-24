@@ -1,0 +1,779 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="CPP11UT - http://cpp11ut.x64it.com" />
+  <title>MyClass - UT Results</title>
+
+  <style type="text/css" media="screen">
+    <!--
+    hr  {
+      width: 99%;
+      border-width: 0px;
+      height: 3px;
+      color: #ccbbcc;
+      background-color: #cc33cc;
+      padding: 0px;
+    }
+
+    table {
+      width:100%;
+      border-collapse:separate;
+      border-spacing: 2px;
+      border:0px;
+    }
+    tr {
+      margin:0px;
+      padding:0px;
+    }
+    td {
+      margin:0px;
+      padding:1px;
+    }
+    .table_summary {
+      background-color: #b0b0b0;
+    }
+    .table_suites {
+      background-color: #b0b0b0;
+    }
+    .table_suite {
+      background-color: #b0b0b0;
+    }
+    .table_result {
+      background-color: #b0b0b0;
+      margin: 0px 0px 1em 0px;
+    }
+    .tablecell_title {
+      background-color: #a5cef7;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .tablecell_success {
+      background-color: #efefe7;
+      text-align: center;
+    }
+
+    .tablecell_left {
+      background-color: #efefe7;
+      text-align: left;
+    }
+
+    .tablecell_warn {
+      background-color: #ffff80;
+      text-align: center;
+    }
+
+    .tablecell_error {
+      color: #ff0808;
+      background-color: #efbfe7;
+      font-weight: bold;
+      text-align: center;
+    }
+    p.spaced {
+      margin: 0px;
+      padding: 3px 0px 3px 0px;
+    }
+    p.unspaced {
+      margin: 0px;
+      padding: 0px 0px 2em 0px;
+    }
+    -->
+  </style>
+</head>
+
+<body>
+
+<table>
+ <tr>
+  <td>
+   <h1><a name="top"></a>MyClass - Unit Tests Results</h1>
+  </td>
+  <td>
+   <div style="text-align:right">
+    <a href="http://utcpp11.x64it.com">CPP11UT</a> v0.1 &copy; 2013
+   </div>
+   <div style="text-align:right">
+    by Andreas Boerner
+   </div>
+  </td>
+ </tr>
+</table>
+<div style="border: 0px;font-size: 13px; font-family: monospace; text-align: center;">generation time: 2013-04-24  11:54:08  MDT</div>
+<div style="border: 0px;font-size: 13px; font-family: monospace; text-align: center;">/home/andy/hg/c2/apps/utcpp11/projects</div>
+
+<hr />
+
+<h2>Summary</h2>
+<h3 style="color: red; background-color: yellow;">FAILED testcases: 9 (42%)</h3><h3 style="color: black; background-color: yellow;">DISABLED testcases: 1 (4%)</h3>
+<table style="table-layout: fixed;" summary="Summary of test results" class="table_summary">
+ <col width="120px" />
+  <tr>
+    <td style="width: 400px;" class="tablecell_title"></td>
+    <td class="tablecell_title">Total</td>
+    <td class="tablecell_title">Exec'd</td>
+    <td colspan = "2" style="text-align:center;" class="tablecell_title">OK</td>
+    <td colspan = "2" style="text-align:center;" class="tablecell_title">DISABLED</td>
+    <td colspan = "2" style="text-align:center;" class="tablecell_title">FAIL</td>
+  </tr>
+  <tr>
+    <td style="" class="tablecell_title"></td>
+    <td style="" class="tablecell_title"></td>
+    <td style="" class="tablecell_title"></td>
+    <td style="text-align:center;" class="tablecell_title">#</td>
+    <td style="text-align:center;" class="tablecell_title">%</td>
+    <td style="text-align:center;" class="tablecell_title">#</td>
+    <td style="text-align:center;" class="tablecell_title">%</td>
+    <td style="text-align:center;" class="tablecell_title">#</td>
+    <td style="text-align:center;" class="tablecell_title">%</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;" class="tablecell_error">Test Suites</td>
+    <td class="tablecell_success">4</td>
+    <td class="tablecell_success">4</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">50</td>
+    <td class="tablecell_success"> </td>
+    <td class="tablecell_success"> </td>
+    <td class="tablecell_error">2</td>
+    <td class="tablecell_error">50</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;" class="tablecell_error">Test Cases</td>
+    <td class="tablecell_success">21</td>
+    <td class="tablecell_warn">20</td>
+    <td class="tablecell_success">11</td>
+    <td class="tablecell_success">55</td>
+    <td class="tablecell_warn">1</td>
+    <td class="tablecell_warn">4.76</td>
+    <td class="tablecell_error">9</td>
+    <td class="tablecell_error">45</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;" class="tablecell_error">Test Steps</td>
+    <td class="tablecell_success"> </td>
+    <td class="tablecell_success">29</td>
+    <td class="tablecell_success">20</td>
+    <td class="tablecell_success">69</td>
+    <td class="tablecell_success"> </td>
+    <td class="tablecell_success"> </td>
+    <td class="tablecell_error">9</td>
+    <td class="tablecell_error">31</td>
+  </tr>
+</table>
+<p>Total time elapsed: 593 &micro;s</p>
+
+<hr />
+
+<h2>Test Suites</h2>
+<h3>Summary</h3>
+<table style="table-layout: fixed;" summary="Summary of test suites" class="table_summary">
+ <col width="200px" />
+  <tr>
+    <td style="text-align: left;" class="tablecell_title">Suite</td>
+    <td class="tablecell_title">Total</td>
+    <td class="tablecell_title">Exec'd</td>
+    <td colspan = "2" style="text-align:center;" class="tablecell_title">OK</td>
+    <td colspan = "2" style="text-align:center;" class="tablecell_title">DISABLED</td>
+    <td colspan = "2" style="text-align:center;" class="tablecell_title">FAIL</td>
+    <td class="tablecell_title">Time</td>
+  </tr>
+  <tr>
+    <td style="" class="tablecell_title"></td>
+    <td style="" class="tablecell_title">testcases</td>
+    <td style="" class="tablecell_title">testcases</td>
+    <td style="text-align:center;" class="tablecell_title">#</td>
+    <td style="text-align:center;" class="tablecell_title">%</td>
+    <td style="text-align:center;" class="tablecell_title">#</td>
+    <td style="text-align:center;" class="tablecell_title">%</td>
+    <td style="text-align:center;" class="tablecell_title">#</td>
+    <td style="text-align:center;" class="tablecell_title">%</td>
+    <td style="text-align:center;" class="tablecell_title">s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success"><a href="#1-Basic">1-Basic</a></td>
+    <td class="tablecell_success">5</td>
+    <td class="tablecell_success">5</td>
+    <td class="tablecell_success">5</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">152 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success"><a href="#2-Advanced">2-Advanced</a></td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">51.9 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#3-Big">3-Big</a></td>
+    <td class="tablecell_success">3</td>
+    <td class="tablecell_warn">2</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">50</td>
+    <td class="tablecell_warn">1</td>
+    <td class="tablecell_warn">33.3</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">50</td>
+    <td class="tablecell_success">90.1 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except">4-Except</a></td>
+    <td class="tablecell_success">11</td>
+    <td class="tablecell_success">11</td>
+    <td class="tablecell_success">3</td>
+    <td class="tablecell_success">27.3</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_error">8</td>
+    <td class="tablecell_error">72.7</td>
+    <td class="tablecell_success">299 &micro;s</td>
+  </tr>
+
+</table>
+<h3><a name="1-Basic"></a>Suite: 1-Basic</h3>
+<table style="table-layout: fixed;" summary="Details for suite 1-Basic" class="table_suite">
+ <col width="200px" />
+  <tr>
+    <td style="text-align: left;" class="tablecell_title">Test Case Name</td>
+    <td style="width:40%" class="tablecell_title">description</td>
+    <td class="tablecell_title">exec'd</td>
+    <td colspan="2" class="tablecell_title">OK</td>
+    <td colspan="2" class="tablecell_title">FAIL</td>
+    <td class="tablecell_title">Time</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;" class="tablecell_title"> </td>
+    <td style="width:40%" class="tablecell_title"> </td>
+    <td class="tablecell_title">test steps</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">0-ctor</td>
+    <td style="text-align:left;" class="tablecell_success">check c-tor</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">69 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">t01</td>
+    <td style="text-align:left;" class="tablecell_success">10.0/5.0 => 2.0</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">29.1 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">t02</td>
+    <td style="text-align:left;" class="tablecell_success">10/2 => 5</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">33.4 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">t03</td>
+    <td style="text-align:left;" class="tablecell_success">7/2 => 3.5</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">10.5 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">t04</td>
+    <td style="text-align:left;" class="tablecell_success">4/4 => 1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">10.3 &micro;s</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<h3><a name="2-Advanced"></a>Suite: 2-Advanced</h3>
+<table style="table-layout: fixed;" summary="Details for suite 2-Advanced" class="table_suite">
+ <col width="200px" />
+  <tr>
+    <td style="text-align: left;" class="tablecell_title">Test Case Name</td>
+    <td style="width:40%" class="tablecell_title">description</td>
+    <td class="tablecell_title">exec'd</td>
+    <td colspan="2" class="tablecell_title">OK</td>
+    <td colspan="2" class="tablecell_title">FAIL</td>
+    <td class="tablecell_title">Time</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;" class="tablecell_title"> </td>
+    <td style="width:40%" class="tablecell_title"> </td>
+    <td class="tablecell_title">test steps</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">a-01</td>
+    <td style="text-align:left;" class="tablecell_success"> (-) 5/5 => 1</td>
+    <td class="tablecell_success">3</td>
+    <td class="tablecell_success">3</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">37.2 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">a-02</td>
+    <td style="text-align:left;" class="tablecell_success">100/.5 => 200</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">14.7 &micro;s</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<h3><a name="3-Big"></a>Suite: 3-Big</h3>
+<table style="table-layout: fixed;" summary="Details for suite 3-Big" class="table_suite">
+ <col width="200px" />
+  <tr>
+    <td style="text-align: left;" class="tablecell_title">Test Case Name</td>
+    <td style="width:40%" class="tablecell_title">description</td>
+    <td class="tablecell_title">exec'd</td>
+    <td colspan="2" class="tablecell_title">OK</td>
+    <td colspan="2" class="tablecell_title">FAIL</td>
+    <td class="tablecell_title">Time</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;" class="tablecell_title"> </td>
+    <td style="width:40%" class="tablecell_title"> </td>
+    <td class="tablecell_title">test steps</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">t01</td>
+    <td style="text-align:left;" class="tablecell_success">1000000/2 => 500000</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">14.6 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#3-Big_t02">t02</a></td>
+    <td style="text-align:left;" class="tablecell_error">some more big numbers /2</td>
+    <td class="tablecell_error">3</td>
+    <td class="tablecell_error">2</td>
+    <td class="tablecell_error">66.7</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">33.3</td>
+    <td class="tablecell_error">75.5 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_warn">t03</td>
+    <td style="text-align:left;" class="tablecell_warn">some even bigger numbers /2</td>
+  </tr>
+</table>
+  <br />
+<table>
+  <tr>
+  <td style="text-align:left;" class="tablecell_warn"> test cases marked yellow were DISABLED !</td>
+</tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<h3><a name="4-Except"></a>Suite: 4-Except</h3>
+<table style="table-layout: fixed;" summary="Details for suite 4-Except" class="table_suite">
+ <col width="200px" />
+  <tr>
+    <td style="text-align: left;" class="tablecell_title">Test Case Name</td>
+    <td style="width:40%" class="tablecell_title">description</td>
+    <td class="tablecell_title">exec'd</td>
+    <td colspan="2" class="tablecell_title">OK</td>
+    <td colspan="2" class="tablecell_title">FAIL</td>
+    <td class="tablecell_title">Time</td>
+  </tr>
+  <tr>
+    <td style="text-align: left;" class="tablecell_title"> </td>
+    <td style="width:40%" class="tablecell_title"> </td>
+    <td class="tablecell_title">test steps</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">#</td>
+    <td class="tablecell_title">%</td>
+    <td class="tablecell_title">s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">e-01</td>
+    <td style="text-align:left;" class="tablecell_success">test div zero exception</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">2</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">98.2 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-02">e-02</a></td>
+    <td style="text-align:left;" class="tablecell_error">div zero, don't expect exception</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">100</td>
+    <td class="tablecell_error">24.6 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-03">e-03</a></td>
+    <td style="text-align:left;" class="tablecell_error">test range exception</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">100</td>
+    <td class="tablecell_error">29.5 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-04">e-04</a></td>
+    <td style="text-align:left;" class="tablecell_error">int exception</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">100</td>
+    <td class="tablecell_error">20.6 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-05">e-05</a></td>
+    <td style="text-align:left;" class="tablecell_error">std::exception derived exception</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">100</td>
+    <td class="tablecell_error">21.6 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-06">e-06</a></td>
+    <td style="text-align:left;" class="tablecell_error">proprietary exception</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">100</td>
+    <td class="tablecell_error">19.9 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-07">e-07</a></td>
+    <td style="text-align:left;" class="tablecell_error">exception outside of test step</td>
+    <td class="tablecell_error">2</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">50</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">50</td>
+    <td class="tablecell_error">22.4 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-08">e-08</a></td>
+    <td style="text-align:left;" class="tablecell_error">check for exception</td>
+    <td class="tablecell_error">2</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">50</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">50</td>
+    <td class="tablecell_error">31.5 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">e-08a</td>
+    <td style="text-align:left;" class="tablecell_success">check for exception</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">9.91 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_error"><a href="#4-Except_e-09">e-09</a></td>
+    <td style="text-align:left;" class="tablecell_error">exception does not match</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">0</td>
+    <td class="tablecell_error">1</td>
+    <td class="tablecell_error">100</td>
+    <td class="tablecell_error">11 &micro;s</td>
+  </tr>
+  <tr>
+    <td style="text-align:left;" class="tablecell_success">e-10</td>
+    <td style="text-align:left;" class="tablecell_success">good case</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">1</td>
+    <td class="tablecell_success">100</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">0</td>
+    <td class="tablecell_success">9.62 &micro;s</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+
+
+<h2>Test result details - Failed test steps</h2>
+<h3><a name="3-Big_t02">3-Big::t02</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">3-Big::t02</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">some more big numbers /2</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:70</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-002</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">tc(10000000000,3) expected to be: 5000000000, but evaluated to 3333333248</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left">5000000000</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left">tc(10000000000,3) => 3333333248</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-02">4-Except::e-02</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-02</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">div zero, don't expect exception</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:91</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-001</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">unexpected exception occured!</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left"></td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left">std::runtime_error</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">What</td>    <td class="tablecell_left">division by zero</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-03">4-Except::e-03</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-03</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">test range exception</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:96</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-001</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">unexpected exception occured!</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left"></td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left">std::range_error</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">What</td>    <td class="tablecell_left">can't handle 42</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-04">4-Except::e-04</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-04</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">int exception</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:101</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-001</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">unexpected exception occured! (UNKNOWN) means it was not derived from std::exception.</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left"></td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left">(UNKNOWN)</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-05">4-Except::e-05</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-05</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">std::exception derived exception</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:106</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-001</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">unexpected exception occured!</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left"></td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left">MyException</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">What</td>    <td class="tablecell_left">std::exception</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-06">4-Except::e-06</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-06</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">proprietary exception</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:111</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-001</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">unexpected exception occured! (UNKNOWN) means it was not derived from std::exception.</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left"></td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left">(UNKNOWN)</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-07">4-Except::e-07</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-07</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left"><kbd><b>internally generated Teststep</b> for Testcase exception failure</kbd></td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:117</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TC-intern</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left"></td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left">NO exception</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left">std::runtime_error</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">What</td>    <td class="tablecell_left">gone wrong</td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-08">4-Except::e-08</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-08</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">check for exception</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:123</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-001</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">exceptions do NOT match</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left">std::range_error</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left"></td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+<h3><a name="4-Except_e-09">4-Except::e-09</a></h3>
+<table style="table-layout: fixed;" summary="Test Failure" class="table_result">
+ <col width="100px" />
+<tr>
+<td style="text-align:left;" class="tablecell_title">Testcase</td>
+<td class="tablecell_left">4-Except::e-09</td>
+</tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Descript.</td>    <td class="tablecell_left">exception does not match</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">File</td>    <td class="tablecell_left">../src/Tests.cc:134</td>
+  </tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Test Step</td>    <td class="tablecell_left">TS-001</td></tr>
+<tr>
+<td style="text-align:left;" class="tablecell_title">Message</td>    <td class="tablecell_left">exceptions do NOT match</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Expected</td>    <td class="tablecell_left">std::range_error</td>
+  </tr><tr>
+<td style="text-align:left;" class="tablecell_title">Actual</td>    <td class="tablecell_left"></td>
+  </tr>
+</table>
+<p class="spaced"><a href="#top">Back to top</a></p>
+<hr />
+
+<hr />
+</body>
+</html>
