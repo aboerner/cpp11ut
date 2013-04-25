@@ -1,4 +1,4 @@
-// (C) 2013 by Andreas Boerner
+// -*- c++ -*- (C) 2013 by Andreas Boerner
 #pragma once
 
 #include <functional> // function
@@ -12,36 +12,45 @@ namespace {
 };
 
 // helpers
-#define COMBINE1(x, y) x ## y
-#define COMBINE(x, y) COMBINE1(x, y)
-#define QUOT(x) #x
-#define QUOTE(x) QUOT(x)
-#define VAR(a) COMBINE(tc_, a)
-#define VARS VAR(__LINE__)
+#define UT_COMBINE1(x, y) x ## y
+#define UT_COMBINE(x, y) UT_COMBINE1(x, y)
+#define UT_QUOT(x) #x
+#define UT_QUOTE(x) UT_QUOT(x)
+#define UT_VAR(a) UT_COMBINE(tc_, a)
+#define UT_VARS UT_VAR(__LINE__)
 
 // the real stuff
-#define TEST_CASE(a,b,c) UT::Probe VARS (ut_s_path, __LINE__,a,b,c)
-#define EXPECT(a) VARS.expect(a)
+#define TEST_CASE(a,b,c) UT::Probe UT_VARS (ut_s_path, __LINE__,a,b,c)
+#define EXPECT(a) UT_VARS.expect(a)
 
-#define IS_EQUAL(a,b) try { VARS.equal(a,b, QUOTE(a), QUOTE(b) ); }\
-   catch( const exception & e ) { VARS.except(e); }\
-   catch(...) { VARS.undef_except(); }
+#define IS_EQUAL(a,b) try { UT_VARS.equal(a,b, UT_QUOTE(a), UT_QUOTE(b) ); }\
+   catch( const exception & e ) { UT_VARS.except(e); }\
+   catch(...) { UT_VARS.undef_except(); }
 
-#define IS_TRUE(a) try { VARS.isTrue(a, QUOTE(a)); }\
-   catch( const exception & e ) { VARS.except(e); }\
-   catch(...) { VARS.undef_except(); }
+#define IS_TRUE(a) try { UT_VARS.isTrue(a, UT_QUOTE(a)); }\
+   catch( const exception & e ) { UT_VARS.except(e); }\
+   catch(...) { UT_VARS.undef_except(); }
 
 #define ASSERT(a) IS_TRUE(a)
 
-#define IS_OK(a) VARS.isOK( QUOTE(a)); try { a; }       \
-   catch( const exception & e ) { VARS.except(e); }\
-   catch(...) { VARS.undef_except(); }
+#define IS_OK(a) UT_VARS.isOK( UT_QUOTE(a)); try { a; }\
+   catch( const exception & e ) { UT_VARS.except(e); }\
+   catch(...) { UT_VARS.undef_except(); }
 
-#define SET_TITLE(a) UT::Probe VARS ("setTitle", a)
+#define SET_TITLE(a) UT::Probe UT_VARS ("setTitle", a)
 #define EXEC []()
 
 namespace UT
 {
+   struct Probe;
+   void step_passed(Probe & probe);
+
+   void step_failed_eq(Probe & probe,
+                       const std::string & aVal,
+                       const std::string & bVal,
+                       const std::string & str_a,
+                       const std::string & str_b);
+
    struct Probe
    {
          Probe(const std::string &,          // file name where probe is located
@@ -54,12 +63,6 @@ namespace UT
          Probe( const std::string &,         // cmd-string
                 const std::string &          // data
                 );
-
-         template< typename A, typename B>
-         void equal( const A & a,
-                     const B & b,
-                     const std::string & expect,
-                     const std::string & actual);
 
          void isTrue( const bool expr,
                       const std::string & strExpr);
@@ -92,30 +95,22 @@ namespace UT
          std::string m_suite = "";
          std::string m_tname = "";
          bool m_disabled = false;
+
+         template< typename A, typename B >
+            void equal(const A & a,
+                       const B & b,
+                       const std::string & str_a,
+                       const std::string & str_b)
+         {
+            if(a==b)
+            {
+               step_passed(*this);
+            } else {
+               std::ostringstream ossA, ossB;
+               ossA << std::setprecision(20) << a;
+               ossB << std::setprecision(20) << b;
+               step_failed_eq(*this, ossA.str(), ossB.str(), str_a, str_b);
+            }
+         }
    };
-}
-
-void step_passed(UT::Probe & probe);
-
-void step_failed_eq(UT::Probe & probe,
-                    const std::string & aVal,
-                    const std::string & bVal,
-                    const std::string & str_a,
-                    const std::string & str_b);
-
-template< typename A, typename B >
-void UT::Probe::equal(const A & a,
-                      const B & b,
-                      const std::string & str_a,
-                      const std::string & str_b)
-{
-   if(a==b)
-   {
-      step_passed(*this);
-   } else {
-      std::ostringstream ossA, ossB;
-      ossA << std::setprecision(20) << a;
-      ossB << std::setprecision(20) << b;
-      step_failed_eq(*this, ossA.str(), ossB.str(), str_a, str_b);
-   }
 }
