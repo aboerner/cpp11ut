@@ -3,9 +3,13 @@ cpp11ut
 
 CPP11UT is a simple but effective C++ unit test framework for Linux and g++ compiler.
 
-most up-to-date info:
+Example output: http://www.x64it.com/files/results.html
+
+hosted at
 
      https://github.com/aboerner/cpp11ut/wiki
+and
+     http://redmine.x64it.com/projects/cpp11ut1
 
 Features
 =======
@@ -25,7 +29,7 @@ Limitations
 ===========
 
     works for Linux only
-    needs C++11 compiler; g++ >= version 4.6
+    needs C++11 compiler; g++ >= version 4.6 or clang++ v3.3
     need to link against standard Linux library librt.a/so
     pdf generation (optional) relies on external tool: http://code.google.com/p/wkhtmltopdf
 
@@ -83,9 +87,11 @@ MyClass.cc/h,    The class to be tested
 Tests.cc         The test cases
 unittest.cc/h    the framework
 
-html example output: http://redmine.x64it.com/projects/cpp11ut1/repository/revisions/62d3167fd82a/entry/projects/results.html
+html example output:
+     http://www.x64it.com/files/results.html
 
-pdf example output: http://redmine.x64it.com/projects/cpp11ut1/repository/revisions/62d3167fd82a/entry/projects/results.pdf
+pdf example output:
+    http://www.x64it.com/files/results.pdf
 
 
 TODO
