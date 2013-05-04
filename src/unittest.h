@@ -16,28 +16,28 @@ namespace {
 #define UT_COMBINE(x, y) UT_COMBINE1(x, y)
 #define UT_QUOT(x) #x
 #define UT_QUOTE(x) UT_QUOT(x)
-#define UT_VAR(a) UT_COMBINE(tc_, a)
-#define UT_VARS UT_VAR(__LINE__)
+#define UT_VAR(a) UT_COMBINE(UT_tc_, a)
+#define UT_NS UT_VAR(__LINE__)
 
 // the real stuff
-#define TEST_CASE(a,b,c) UT::Probe UT_VARS (ut_s_path, __LINE__,a,b,c)
-#define EXPECT(a) UT_VARS.expect(a)
+#define TEST_CASE(a,b,c) namespace UT_NS { UT::Probe t1(ut_s_path, __LINE__,a,b,c); }
+#define EXPECT(a) t1.expect(a)
 
-#define IS_EQUAL(a,b) try { UT_VARS.equal(a,b, UT_QUOTE(a), UT_QUOTE(b) ); }\
-   catch( const exception & e ) { UT_VARS.except(e); }\
-   catch(...) { UT_VARS.undef_except(); }
+#define IS_EQUAL(a,b) try { t1.equal(a, b, UT_QUOTE(a), UT_QUOTE(b) ); }\
+   catch( const exception & e ) { t1.except(e); }\
+   catch(...) { t1.undef_except(); }
 
-#define IS_TRUE(a) try { UT_VARS.isTrue(a, UT_QUOTE(a)); }\
-   catch( const exception & e ) { UT_VARS.except(e); }\
-   catch(...) { UT_VARS.undef_except(); }
+#define IS_TRUE(a) try { t1.isTrue(a, UT_QUOTE(a)); }\
+   catch( const exception & e ) {t1.except(e); }\
+   catch(...) { t1.undef_except(); }
 
 #define ASSERT(a) IS_TRUE(a)
 
-#define IS_OK(a) UT_VARS.isOK( UT_QUOTE(a)); try { a; }\
-   catch( const exception & e ) { UT_VARS.except(e); }\
-   catch(...) { UT_VARS.undef_except(); }
+#define IS_OK(a) t1.isOK( UT_QUOTE(a)); try { a; }\
+   catch( const exception & e ) { t1.except(e); }\
+   catch(...) { t1.undef_except(); }
 
-#define SET_TITLE(a) UT::Probe UT_VARS ("setTitle", a)
+#define SET_TITLE(a) UT::Probe t2("setTitle", a)
 #define EXEC []()
 
 namespace UT

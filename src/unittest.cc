@@ -6,6 +6,7 @@
 #include <fstream>       // ofstream
 #include <iostream>      // cout, cerr
 #include <map>
+#include <vector>
 #include <unistd.h>      // pipe, fork, close, dup2, execlp, read
 
 using namespace std;
@@ -156,7 +157,8 @@ namespace {
 
          int m_ts_counter = 0;
          double m_time = 0.0;
-         map<string, Teststep> m_tstep = {};
+
+         map<string, Teststep> m_tstep {};
 
          string dump()
          {
@@ -190,7 +192,8 @@ namespace {
          int m_tc_OK = 0;
          int m_tc_FAIL = 0;
          int m_tc_DISABLED = 0;
-         map<string, Testcase> m_tcs = {};
+
+         map<string, Testcase> m_tcs {};
 
          string dump()
          {
@@ -211,21 +214,6 @@ namespace {
             return oss.str();
          }
    };
-
-   bool operator<(const Suite & lhs, const Suite & rhs)
-   {
-      return lhs.m_name < rhs.m_name;
-   }
-
-   bool operator<(const Testcase & lhs, const Testcase & rhs)
-   {
-      return lhs.m_name < rhs.m_name;
-   }
-
-   bool operator<(const Teststep & lhs, const Teststep & rhs)
-   {
-      return lhs.m_counter < rhs.m_counter;
-   }
 
    class Manager
    {
@@ -278,7 +266,7 @@ namespace {
                          float h    // DISABLED %
                          );
       private:
-         myLambdaMap<UT::Probe>::type m_fmap = {};
+         myLambdaMap<UT::Probe>::type m_fmap {};
 
          std::string m_filter = "";
          std::string m_title = "";
@@ -286,7 +274,7 @@ namespace {
          int m_su_OK = 0;
          int m_su_FAIL = 0;
 
-         map<string, Suite> m_suites = {};
+         map<string, Suite> m_suites {};
    };
 
    typedef Singleton<Manager> S_Manager;
