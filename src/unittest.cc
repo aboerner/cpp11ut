@@ -8,7 +8,7 @@
 #include <map>
 #include <vector>
 #include <unistd.h>      // pipe, fork, close, dup2, execlp, read
-
+#include <sys/stat.h>    // mkdir
 using namespace std;
 
 /* There are 3 phases:
@@ -69,6 +69,84 @@ namespace {
       return temp;
    }
 
+   struct ArgVS
+   {
+         ArgVS() : m_args() {};
+         template<typename T>
+         T getValue(const char * const copt) const;
+
+         vector<string> m_args;
+   };
+
+   template<>
+   bool ArgVS::getValue(const char * const copt) const
+   {
+      string opt(copt);
+      auto pos = find(m_args.begin(), m_args.end(), opt);
+      if( pos == m_args.end() )
+      {
+         return false;
+      } else {
+         return true;
+      }
+   }
+
+   template<>
+   int ArgVS::getValue(const char * const copt) const
+   {
+      string opt(copt);
+      auto pos = find(m_args.begin(), m_args.end(), opt);
+      if( pos == m_args.end() )
+      {
+         ostringstream os;
+
+         os << "Option not found on CLI: <" << opt << ">.";
+         throw runtime_error(os.str());
+      }
+
+      pos++;
+
+      if( pos == m_args.end() )
+      {
+         ostringstream os;
+         os << "NO value specified after option <" << opt << ">.";
+         throw runtime_error(os.str());
+      }
+
+      int rc = stoi(*pos);
+
+      return rc;
+   }
+
+   template<>
+   unsigned int ArgVS::getValue(const char * const copt) const
+   {
+      int value = getValue<int>(copt);
+      unsigned int rc = static_cast<unsigned int>(value);
+      return rc;
+   }
+
+   template<>
+   string ArgVS::getValue(const char * const copt) const
+   {
+      string opt(copt);
+      auto pos = find(m_args.begin(), m_args.end(), opt);
+      if( pos == m_args.end() )
+      {
+         return "";
+      }
+
+      pos++;
+
+      if( pos == m_args.end() )
+      {
+         ostringstream os;
+         os << "NO value specified after option <" << opt << ">.";
+         throw runtime_error(os.str());
+      }
+      return *pos;
+   }
+
    string printTime( double t )
    {
       ostringstream oss;
@@ -90,8 +168,8 @@ namespace {
    {
       // this c-stuff is NOT exception safe (free()); hope it works anyway...
       int status;
-      char * realname = abi::__cxa_demangle( typeid(e).name(), 0, 0, &status);
       ostringstream oss;
+      char * realname = abi::__cxa_demangle( typeid(e).name(), 0, 0, &status);
       oss << realname;
       free(realname);
       return oss.str();
@@ -522,7 +600,7 @@ namespace {
          cout << "FAILED: ";
       }
 
-      cout << "<" << p.m_name << " - " << tsName << endl;
+      cout << "<" << p.m_name << "> - " << tsName << endl;
    }
 
    void Manager::setExpect(const UT::Probe & probe)
@@ -681,7 +759,6 @@ namespace {
 
    const char * const s_html[] = {
 
-
       "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">",
       "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">",
       "<head>",
@@ -743,6 +820,13 @@ namespace {
       "      text-align: left;",
       "    }",
       "",
+      "    .tablecell_lefterror {",
+      "      color: #ff0808;",
+      "      background-color: #efbfe7;",
+      "      font-weight: bold;",
+      "      text-align: left;",
+      "    }",
+      "",
       "    .tablecell_warn {",
       "      background-color: #ffff80;",
       "      text-align: center;",
@@ -775,7 +859,7 @@ namespace {
       "  </td>",
       "  <td>",
       "   <div style=\"text-align:right\">",
-      "    <a href=\"http://redmine.x64it.com/projects/cpp11ut1\">CPP11UT</a> v0.1 &copy; 2013",
+      "    <a href=\"http://redmine.x64it.com/projects/cpp11ut1\">CPP11UT</a> v0.2 &copy; 2013",
       "   </div>",
       "   <div style=\"text-align:right\">",
       "    by Andreas Boerner",
@@ -1294,7 +1378,7 @@ namespace {
             {
                if( !failFound)
                {
-                  oss << "<h2>Test result details - Failed test steps</h2>\n";
+                  oss << "<h2>Test result details - Test steps</h2>\n";
                   failFound = true;
                }
 
@@ -1327,6 +1411,16 @@ namespace {
 
                      oss << "<tr>\n<td style=\"text-align:left;\" class=\"tablecell_title\">Test Step</td>"
                          << "    <td class=\"tablecell_left\">" << ts.first << "</td></tr>\n";
+
+                     oss << "<tr>\n<td style=\"text-align:left;\" class=\"tablecell_title\">Status</td>"
+                         << "    <td class=\"tablecell_left";
+                     if( ts.second.m_OK )
+                     {
+                        oss << "\">OK.";
+                     } else {
+                        oss << "error\">FAILED.";
+                     }
+                     oss << "</td></tr>\n";
 
                      oss << "<tr>\n<td style=\"text-align:left;\" class=\"tablecell_title\">Message</td>"
                          << "    <td class=\"tablecell_left\">" << ts.second.m_msg <<  "</td>\n  </tr>";
@@ -1381,7 +1475,9 @@ namespace {
 
    void Manager::genHTML()
    {
-      ofstream of("results.html");
+      ::mkdir("tmp", 0774);
+
+      ofstream of("tmp/results.html");
       string::size_type pos;
 
       for( auto & i : s_html )
@@ -1444,7 +1540,7 @@ namespace {
 
          of << line << "\n";
       }
-      cout << "<results.html> generated." << endl;
+      cout << "<tmp/results.html> generated." << endl;
    }
 
    void Manager::tc_disabled(const UT::Probe & probe)
@@ -1516,13 +1612,28 @@ namespace {
             if( tc.m_is_EX_happened )
             {
                Teststep ts;
-               ts.m_OK = false;
-               ts.m_desc = "<kbd><b>internally generated Teststep</b> for Testcase exception failure</kbd>";
-               ts.m_EX_expected = "NO exception";
-               ts.m_EX_happened = tc.m_EX_happened;
+               ts.m_OK = tc.m_EX_expected == tc.m_EX_happened;
+               ts.m_desc = "<kbd><b>internally generated Teststep</b> for Testcase exception check</kbd>";
+ 
+               if( tc.m_EX_expected == "" )
+               {
+                  ts.m_EX_expected = "NO exception";
+               } else {
+                  ts.m_EX_expected = tc.m_EX_expected;
+               }
+
+               if( tc.m_EX_happened == "" )
+               {
+                  ts.m_EX_happened = "UNKNOWN exception.";
+               } else {
+                  ts.m_EX_happened = tc.m_EX_happened;
+               }
+
                ts.m_what = what;
                what = "";
-               tc.m_ts_FAIL++;
+
+               if( !ts.m_OK )
+                  tc.m_ts_FAIL++;
 
                tc.m_tstep.insert(make_pair( "TC-intern", ts));
             }
@@ -1550,6 +1661,8 @@ namespace {
          throw runtime_error("no pipe");
       }
 
+      ::mkdir("tmp", 0774);
+
       switch( fork() )
       {
          case -1:
@@ -1574,9 +1687,9 @@ namespace {
          cout << "INFO: wkhtml2pdf not found, can't generate pdf file!\n"
               << "  check http://code.google.com/p/wkhtmltopdf/" << endl;
       } else {
-         const string cmd = "wkhtml2pdf -b --zoom 0.7 -s Letter results.html results.pdf";
+         const string cmd = "wkhtml2pdf -b --zoom 0.7 -s Letter tmp/results.html tmp/results.pdf";
          system(cmd.c_str());
-         cout << "<results.pdf> created." << endl;
+         cout << "<tmp/results.pdf> created." << endl;
       }
 
    }
@@ -1594,67 +1707,49 @@ namespace {
       cout << endl;
    }
 
-   void setParas(const vector<string> & args)
+   void setParas(const ArgVS & args)
    {
       Manager & mgr = S_Manager::getInstance();
 
-      auto p = find(args.begin(), args.end(), "-d");
-      if( p != args.end() )
-      {
+      auto p = args.getValue<bool>("-d");
+      if( p )
          mgr.m_debug = true;
-      }
 
-      p = find(args.begin(), args.end(),"-a");
-      if( p != args.end() )
-      {
+      p = args.getValue<bool>("-a");
+      if( p )
          mgr.m_ts_all = true;
-      }
 
-      p = find(args.begin(), args.end(),"-nopdf");
-      if( p != args.end() )
-      {
+      p = args.getValue<bool>("-nopdf");
+      if( p )
          mgr.m_PDF = false;
-      }
-
-      p = find(args.begin(), args.end(),"-f");
-      if( p != args.end() )
+ 
+      p = args.getValue<bool>("-f");
+      if( p )
       {
-         p++;
-         if( p == args.end() )
-         {
-            cerr << "-f needs a filter, see --help" << endl;
-         }
-
-         mgr.setFilter(*p);
-         cout << "INFO: set filter to <" << *p << ">" << endl;
+         string filt = args.getValue<string>("-f");
+         mgr.setFilter(filt.c_str());
+         cout << "INFO: set filter to <" << filt << ">" << endl;
 
       }
 
-      p = find(args.begin(), args.end(),"-h");
-      if( p != args.end() )
-      {
-         usage();
-         exit(0);
-      }
-
-      p = find(args.begin(), args.end(),"--help");
-      if( p != args.end() )
+      p = args.getValue<bool>("-h") || args.getValue<bool>("--help") ;
+      if( p )
       {
          usage();
          exit(0);
       }
    }
 
-   void getArgs( int argc, char *argv[] )
+   void getArgs( const int argc, char const * const argv[] )
    {
-      vector<string> args;
+      ArgVS args;
       for( int i = 0; i< argc; ++i )
       {
-         args.push_back(argv[i]);
+         args.m_args.push_back(argv[i]);
       }
 
       setParas(args);
-   }
+   } 
 }
 
 // === namespace UT =============================================================
@@ -1815,24 +1910,27 @@ namespace UT {
 
 }
 
-int main( int argc, char *argv[])
+namespace UT
 {
-   getArgs(argc, argv);
-
-   Manager & mgr = S_Manager::getInstance();
-
-   mgr.exec();
-   mgr.genStatistics();
-   mgr.printSummary();
-
-   if( mgr.m_debug )
+   int utest( const int argc, char const * const argv[] )
    {
-      cout << mgr.dump() << endl;
+      getArgs(argc, argv);
+
+      Manager & mgr = S_Manager::getInstance();
+
+      mgr.exec();
+      mgr.genStatistics();
+      mgr.printSummary();
+
+      if( mgr.m_debug )
+      {
+         cout << mgr.dump() << endl;
+      }
+
+      mgr.genHTML();
+      mgr.genXML();
+      mgr.genPDF();
+
+      return 0;
    }
-
-   mgr.genHTML();
-   mgr.genXML();
-   mgr.genPDF();
-
-   return 0;
 }

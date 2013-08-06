@@ -61,7 +61,7 @@ Concepts
         e.g. "Advanced/DivideByZero/1.1" => creates a testcase with the name "DivideByZero/1.1" in the test suite "Advanced".
     if a test case name ends with "/DISABLE", then the testcase is disabled and will be skipped, but it generates a warning.
     Each test case can contain several test steps.
-    Each test step is one of "IS_EQUAL(a,b)", "ASSERT(a)", or "IS_OK(a)"
+    Each test step is one of "IS_EQUAL(a,b)" or "ASSERT(a)"
 
 Keywords
 =======
@@ -75,7 +75,6 @@ IS_EQUAL( a,b );
         IS_TRUE( b );    or   ASSERT( b);
 
 EXPECT("exception name");   // what exception do you expect to happen
-        IS_OK( a )                  // checks for exceptions
 
 
 Example
@@ -100,3 +99,21 @@ TODO
 additional test steps might be useful; e.g.
 IS_LESS(a,b) => expect a to be less than b
 ( ASSERT( a < b ) can handle this, but the diagnosis output is suboptimal)
+
+Bugs:
+====
+
+1. () around EXEC in some cases
+
+No really a bug, but:
+see example /1-Basic/t04 in src/Tests.cc
+
+If EXEC contains a C++ contruct with a "," that is not enclosed by (), then
+the Macro expansion of EXEC (the lambda invocation) does not work as expected.
+The compiler will generate an error about a wrong number of arguments in the
+MACRO invocation.
+
+The workaround is to put an additional pair of () around EXEC, or avoid the comma;
+e.g. int a=1; b=2; instead of int a=1,b=2;
+
+

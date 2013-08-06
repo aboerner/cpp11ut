@@ -17,7 +17,7 @@ namespace
 
    TEST_CASE("/1-Basic/0-ctor", "check c-tor",
              EXEC {
-                IS_OK( MyClass my; my=my; );
+                MyClass my; my=my;
              });
 
    TEST_CASE("/1-Basic/t01", "10.0/5.0 => 2.0",
@@ -40,6 +40,7 @@ namespace
 
    TEST_CASE("/1-Basic/t04", "4/4 => 1",
              EXEC {
+                // int a=100, b=98; // this will require an additional () around EXEC
                 int a=100;
                 int b=98;
                 IS_EQUAL(tc(6,3), a-b);
@@ -119,7 +120,7 @@ namespace
    TEST_CASE("/4-Except/e-08", "check for exception",
              EXEC {
                 EXPECT("std::range_error");
-                IS_OK(tc(3,42));
+                tc(3,42);
              });
 
    TEST_CASE("/4-Except/e-08a", "check for exception",

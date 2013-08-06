@@ -6,6 +6,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 namespace {
    const char ut_s_path[] = __BASE_FILE__;
@@ -33,15 +34,13 @@ namespace {
 
 #define ASSERT(a) IS_TRUE(a)
 
-#define IS_OK(a) t1.isOK( UT_QUOTE(a)); try { a; }\
-   catch( const exception & e ) { t1.except(e); }\
-   catch(...) { t1.undef_except(); }
-
 #define SET_TITLE(a) UT::Probe t2("setTitle", a)
 #define EXEC []()
 
 namespace UT
 {
+   int utest( const int argc, const char * const argv[]);
+
    struct Probe;
    void step_passed(Probe & probe);
 
